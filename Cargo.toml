@@ -1,0 +1,4 @@
+[workspace]
+
+members = ["spo2_core", "spo2_derive", "spo2"]
+exclude = ["spo2_tests"]

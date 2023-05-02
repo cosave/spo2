@@ -1,0 +1,8 @@
+{
+    "rust-analyzer.diagnostics.disabled": [
+        "unresolved-proc-macro"
+    ],
+    "cSpell.words": [
+        "repr",
+    ]
+}

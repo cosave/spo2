@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "streetsidesoftware.code-spell-checker",
+        "editorconfig.editorconfig",
+        "rust-lang.rust-analyzer",
+        "sswg.swift-lang",
+        "gruntfuggly.todo-tree",
+        "vscode-icons-team.vscode-icons",
+        "tamasfe.even-better-toml"
+    ]
+}
