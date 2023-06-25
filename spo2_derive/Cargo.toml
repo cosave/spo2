@@ -9,3 +9,10 @@ edition = "2021"
 proc-macro = true
 
 [dependencies]
+proc-macro2 = "1"
+quote = "1"
+spo2_core = { path = "../spo2_core" }
+syn = { version = "2", features = ["full"] }
+
+[dev-dependencies]
+trybuild = "1"

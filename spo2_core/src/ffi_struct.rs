@@ -1,4 +1,6 @@
-use syn::{Field, ItemStruct, __private::ToTokens};
+use proc_macro2::TokenStream;
+use quote::ToTokens;
+use syn::{Field, ItemStruct};
 
 const BASE_TYPES: [&str; 11] = [
     "bool", "i8", "i16", "i32", "i64", "u8", "u16", "u32", "u64", "f32", "f64",
@@ -47,15 +49,25 @@ impl FfiStruct {
     }
 }
 
+impl TryFrom<TokenStream> for FfiStruct {
+    type Error = syn::Error;
+
+    fn try_from(tokens: TokenStream) -> Result<Self, Self::Error> {
+        let struct_def = syn::parse2::<ItemStruct>(tokens)?;
+        Ok(Self::new(struct_def))
+    }
+}
+
 #[cfg(test)]
 mod tests {
-    use syn::{parse2, parse_quote, ItemStruct};
+    use proc_macro2::TokenStream;
+    use syn::parse_quote;
 
     use crate::FfiStruct;
 
     #[test]
     fn test_is_copy_safe() {
-        let test_cases = [
+        let test_cases: [(TokenStream, bool, &str); 8] = [
             (parse_quote! { struct MyStruct {} }, true, "Empty struct."),
             (
                 parse_quote! { struct MyStruct { field1: i32, field2: f64, field3: bool } },
@@ -102,9 +114,8 @@ mod tests {
         ];
 
         for (input, expected, msg) in test_cases.into_iter() {
-            let input_struct =
-                parse2::<ItemStruct>(input).expect(&format!("Unable to parse: {}", msg));
-            let ffi_struct = FfiStruct::new(input_struct);
+            let ffi_struct =
+                FfiStruct::try_from(input).expect(&format!("Unable to parse: {}", msg));
             assert_eq!(
                 ffi_struct.is_copy_safe(),
                 expected,

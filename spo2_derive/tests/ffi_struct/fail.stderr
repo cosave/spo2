@@ -1,0 +1,15 @@
+error: Only copy type structs are supported
+ --> tests/ffi_struct/fail.rs:5:1
+  |
+5 | #[ffi_struct]
+  | ^^^^^^^^^^^^^
+  |
+  = note: this error originates in the attribute macro `ffi_struct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unused import: `std::ffi::c_char`
+ --> tests/ffi_struct/fail.rs:1:5
+  |
+1 | use std::ffi::c_char;
+  |     ^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
