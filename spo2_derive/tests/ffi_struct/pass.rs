@@ -1,7 +1,13 @@
 use spo2_derive::ffi_struct;
 
 #[ffi_struct]
+struct UnitStruct;
+
+#[ffi_struct]
 struct EmptyStruct {}
+
+#[ffi_struct]
+struct TupleStruct(i32, f64, bool);
 
 #[ffi_struct]
 struct BaseTypesStruct {

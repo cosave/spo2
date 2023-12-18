@@ -25,6 +25,15 @@ impl FfiStruct {
         Self { struct_def }
     }
 
+    /// Get the name of the struct.
+    pub fn name(&self) -> &syn::Ident {
+        &self.struct_def.ident
+    }
+
+    fn all_fields(&self) -> Vec<&Field> {
+        self.struct_def.fields.iter().collect()
+    }
+
     /// Get a list of fields in this struct that can safely pass through FFI
     /// without needing special conversion and memory/pointer management.
     /// At this moment only base types are considered safe.
@@ -45,7 +54,7 @@ impl FfiStruct {
     /// Check if this struct can be safely copied over FFI.
     /// A struct can be safely copied over FFI if it contains only safe fields.
     pub fn is_copy_safe(&self) -> bool {
-        self.ffi_safe_fields().len() == self.struct_def.fields.len()
+        self.ffi_safe_fields() == self.all_fields()
     }
 }
 

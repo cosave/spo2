@@ -1,4 +1,12 @@
 [workspace]
+members = ["spo2_core", "spo2_derive", "spo2", "spo2_tests"]
+resolver = "2"
 
-members = ["spo2_core", "spo2_derive", "spo2"]
-exclude = ["spo2_tests"]
+[workspace.package]
+name = "spo2"
+version = "0.1.0"
+authors = ["Akash Gurava <akashgurava@outlook.com>"]
+edition = "2021"
+license = "MIT"
+documentation = "https://docs.rs/spo2"
+repository = "https://github.com/cosave/spo2"

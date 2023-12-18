@@ -3,8 +3,14 @@
         "unresolved-proc-macro"
     ],
     "cSpell.words": [
+        "Akash",
+        "Gurava",
         "repr",
         "struct",
+        "structs",
         "trybuild"
+    ],
+    "rust-analyzer.linkedProjects": [
+        "./spo2_tests/Cargo.toml"
     ]
 }
